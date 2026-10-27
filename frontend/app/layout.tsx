@@ -6,9 +6,9 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BotDonate - Give with BOT on Botchain Testnet",
+  title: "BotDonate - Give with BOT on Botchain",
   description:
-    "Simple, transparent on-chain native BOT donation campaign powered by Botchain Testnet.",
+    "Simple, transparent on-chain native BOT donation campaign powered by Botchain.",
   keywords: ["Botchain", "BOT", "Web3", "Crypto Donations", "Blockchain", "dApp"],
 };
 

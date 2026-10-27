@@ -66,7 +66,7 @@ export function WalletButton() {
           className="flex items-center gap-1.5 rounded-lg bg-amber-500/15 border border-amber-500/40 px-3 py-1.5 text-xs font-medium text-amber-300 transition-colors hover:bg-amber-500/25"
         >
           <AlertTriangle className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-          {isSwitching ? "Switching..." : "Switch to Botchain Testnet"}
+          {isSwitching ? "Switching..." : "Switch to Botchain"}
         </button>
       )}
 
@@ -108,7 +108,7 @@ export function WalletButton() {
                 ) : (
                   <>
                     <CheckCircle2 className="h-3 w-3 text-emerald-400 inline" />
-                    <span>Botchain Testnet (968)</span>
+                    <span>Botchain Mainnet (677)</span>
                   </>
                 )}
               </p>

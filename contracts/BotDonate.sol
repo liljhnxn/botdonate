@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title BotDonate
- * @notice Transparent native BOT donation campaign contract on Botchain Testnet.
+ * @notice Transparent native BOT donation campaign contract on Botchain Mainnet.
  */
 contract BotDonate is ReentrancyGuard {
     address public immutable owner;

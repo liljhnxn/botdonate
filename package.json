@@ -6,8 +6,9 @@
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "deploy:botchain": "hardhat run scripts/deploy.ts --network botchainTestnet",
-    "verify:botchain": "hardhat verify --network botchainTestnet",
+    "deploy": "node scripts/deploy-mainnet.js",
+    "deploy:hardhat": "hardhat run scripts/deploy.ts --network botchainMainnet",
+    "verify": "hardhat verify --network botchainMainnet",
     "lint": "npm --prefix frontend run lint",
     "build": "npm --prefix frontend run build",
     "dev": "npm --prefix frontend run dev"

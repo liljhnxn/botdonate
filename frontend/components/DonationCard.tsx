@@ -13,7 +13,7 @@ import {
   BOT_DONATE_ABI,
   IS_CONTRACT_CONFIGURED,
 } from "@/lib/contracts";
-import { BOTCHAIN_CHAIN_ID, getExplorerTxUrl } from "@/lib/network";
+import { BOTCHAIN_CHAIN_ID, getExplorerTxUrl, getExplorerAddressUrl } from "@/lib/network";
 import { DonationForm } from "./DonationForm";
 import {
   ShieldAlert,
@@ -25,6 +25,7 @@ import {
   CheckCircle2,
   AlertCircle,
   Sparkles,
+  ExternalLink,
 } from "lucide-react";
 
 export function DonationCard() {
@@ -165,6 +166,32 @@ export function DonationCard() {
               campaignDescription
             )}
           </p>
+
+          {/* Mainnet Explorer Contract Link */}
+          {BOT_DONATE_ADDRESS && (
+            <div className="pt-2 flex flex-wrap items-center gap-2">
+              <a
+                href={getExplorerAddressUrl(BOT_DONATE_ADDRESS)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 px-3 py-1.5 rounded-xl transition-all"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain Logo"
+                  className="h-4 w-4 rounded-sm object-contain shrink-0"
+                />
+                <span className="font-bold">Mainnet Contract:</span>
+                <span className="hidden sm:inline font-mono">{BOT_DONATE_ADDRESS}</span>
+                <span className="inline sm:hidden font-mono">{`${BOT_DONATE_ADDRESS.slice(0, 6)}...${BOT_DONATE_ADDRESS.slice(-4)}`}</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <span className="text-[11px] text-slate-500 flex items-center gap-1">
+                <span>•</span>
+                <span>Verified on Botchain Explorer</span>
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Stats Grid */}

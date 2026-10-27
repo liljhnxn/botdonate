@@ -83,7 +83,7 @@ export function DonationForm({ onDonationSuccess }: DonationFormProps) {
     }
 
     if (isWrongNetwork) {
-      setErrorMessage("Please switch to Botchain Testnet.");
+      setErrorMessage("Please switch to Botchain Mainnet.");
       return;
     }
 
@@ -245,7 +245,7 @@ export function DonationForm({ onDonationSuccess }: DonationFormProps) {
           <div className="flex items-center justify-between rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-300">
             <span className="flex items-center gap-2">
               <AlertCircle className="h-4 w-4 text-amber-400 shrink-0" />
-              Connected to wrong network. Switch to Botchain Testnet.
+              Connected to wrong network. Switch to Botchain Mainnet.
             </span>
             <button
               type="button"

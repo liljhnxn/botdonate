@@ -1,6 +1,6 @@
 import { BOTCHAIN_CHAIN_ID, BOTCHAIN_EXPLORER_URL } from "./network";
 
-export const BOT_DONATE_ADDRESS = (process.env.NEXT_PUBLIC_BOT_DONATE_ADDRESS || "").trim() as `0x${string}`;
+export const BOT_DONATE_ADDRESS = (process.env.NEXT_PUBLIC_BOT_DONATE_ADDRESS || "0x29D5a96794889793B4f4b00c010c16e76DF39C50").trim() as `0x${string}`;
 
 export const IS_CONTRACT_CONFIGURED = Boolean(
   BOT_DONATE_ADDRESS && BOT_DONATE_ADDRESS.startsWith("0x") && BOT_DONATE_ADDRESS.length === 42

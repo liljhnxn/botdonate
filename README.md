@@ -1,6 +1,6 @@
 # BotDonate 🤖💎
 
-**BotDonate** is a simple, polished Web3 dApp for transparent on-chain native BOT donations on **Botchain Testnet**.
+**BotDonate** is a polished Web3 dApp for transparent on-chain native BOT donations on **Botchain Mainnet**.
 
 The application allows users to donate native BOT to a community campaign and transparently view all donation records directly fetched from the blockchain events, with secure withdrawal mechanisms reserved exclusively for the campaign owner.
 
@@ -12,7 +12,7 @@ The application allows users to donate native BOT to a community campaign and tr
 - **Direct Native BOT Donations**: No intermediary tokens or extra fees; native BOT is sent directly to the contract.
 - **Transparent On-Chain History**: Recent donations are populated strictly by querying on-chain `DonationReceived` events—never fabricated or mock data.
 - **Owner Withdrawal Controls**: Reentrancy-guarded withdrawal mechanism for the campaign owner with automated UI detection.
-- **Network Verification**: Chain ID 968 detection with warning prompts and one-click network switching.
+- **Network Verification**: Chain ID 677 detection with warning prompts and one-click network switching to Botchain Mainnet.
 - **Real-Time UX States**: Clear lifecycle feedback (Idle, Confirm in wallet, Processing donation, Success with Botchain Explorer link, Error).
 
 ---
@@ -32,15 +32,16 @@ The application allows users to donate native BOT to a community campaign and tr
 
 ---
 
-## Botchain Testnet Configuration
+## Botchain Mainnet Configuration
 
 | Parameter | Value |
 |---|---|
-| **Network Name** | Botchain Testnet |
-| **Chain ID** | `968` |
-| **RPC URL** | [https://rpc.bohr.life](https://rpc.bohr.life) |
-| **Explorer** | [https://scan.bohr.life](https://scan.bohr.life) |
-| **Native Token** | BOT |
+| **Network Name** | Botchain Mainnet |
+| **Chain ID** | `677` |
+| **RPC URL** | [https://rpc.botchain.ai](https://rpc.botchain.ai) |
+| **Explorer** | [https://scan.botchain.ai](https://scan.botchain.ai) |
+| **Native Token** | BOT (Total Supply: 150 Million) |
+| **Deployed Contract** | [`0x29D5a96794889793B4f4b00c010c16e76DF39C50`](https://scan.botchain.ai/address/0x29D5a96794889793B4f4b00c010c16e76DF39C50) |
 
 Network configurations are centralized in `frontend/lib/network.ts` and `hardhat.config.ts`.
 
@@ -69,14 +70,14 @@ Copy `.env.example` to `.env` in the root and in `frontend/.env.local`:
 ```bash
 # In bot-donate/.env (for deployment)
 PRIVATE_KEY=your_private_key_without_0x_prefix
-BOTCHAIN_RPC_URL=https://rpc.bohr.life
-CAMPAIGN_OWNER=0xYourWalletAddress
+BOTCHAIN_RPC_URL=https://rpc.botchain.ai
+CAMPAIGN_OWNER=0xB5E70402516D62C17346E1B8c4AD3621400d0527
 CAMPAIGN_TITLE="Support Open Source Botchain Builders"
-CAMPAIGN_DESCRIPTION="Community funding for developers and tools building on Botchain Testnet."
+CAMPAIGN_DESCRIPTION="Community funding for developers and tools building on Botchain."
 
 # In bot-donate/frontend/.env.local (for frontend)
-NEXT_PUBLIC_BOT_DONATE_ADDRESS=0xYourDeployedContractAddress
-NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.bohr.life
+NEXT_PUBLIC_BOT_DONATE_ADDRESS=0x29D5a96794889793B4f4b00c010c16e76DF39C50
+NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.botchain.ai
 ```
 
 ---
@@ -92,22 +93,25 @@ npm test
 
 ---
 
-## Deployment to Botchain Testnet
+## Deployment to Botchain Mainnet
 
-Deploy `BotDonate.sol` to Botchain Testnet using the automated deployment script:
+Deploy `BotDonate.sol` to Botchain Mainnet:
 
 ```bash
-# Ensure PRIVATE_KEY and CAMPAIGN_OWNER are set in .env
-npm run deploy:botchain
+# Deploys with low gas fee and updates frontend/.env.local automatically:
+npm run deploy
+
+# Or using Hardhat directly:
+npm run deploy:hardhat
 ```
 
-The script outputs:
+The scripts output:
 - Deployed Contract Address
 - Deployment Transaction Hash
-- Chain ID (`968`)
+- Chain ID (`677`)
 - Botchain Explorer URL
 
-Once deployed, copy the contract address into `frontend/.env.local` as `NEXT_PUBLIC_BOT_DONATE_ADDRESS`.
+The frontend address is automatically populated into `frontend/.env.local` as `NEXT_PUBLIC_BOT_DONATE_ADDRESS`.
 
 ---
 
@@ -119,13 +123,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## Security Notes
-
-1. **Reentrancy Protection**: The `withdraw()` function utilizes OpenZeppelin's `ReentrancyGuard` to guard against reentrancy attacks.
-2. **Owner Restrictons**: Only the designated `owner` can invoke `withdraw()`.
-3. **No Record Tampering**: Campaign owner has zero ability to edit, delete, or fabricate donation statistics or events.
-4. **Validation**: Zero-address owner and zero-value donation transactions are explicitly rejected with custom errors.
-5. **Checked Arithmetic**: Built on Solidity 0.8+ with native overflow and underflow protection.
